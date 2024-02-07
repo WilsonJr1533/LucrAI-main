@@ -1,0 +1,66 @@
+
+{% extends "global/base.html" %}
+
+{% block title %}Registrar | {% endblock %}
+
+{% block content %}
+{% include "global/partials/messages.html" %}
+<div class="main-content center container">
+  <h2 class="main-titulo-autenticate">Criar conta</h2>
+</div>
+
+<div class="main-content container">
+  <form id="multi-step-form" action="{% url "authors:register_create" %}" method="POST">
+    {% csrf_token %}
+
+    <!-- Seção 1: Dados Pessoais -->
+    <div class="form-section" id="section-dados-pessoais">
+      <div class="form-content form-content-grid">
+        {% for field in form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{field}}
+
+            {% if field.help_text %}
+              <p class="help-text">{{ field.help_text }}</p>
+            {% endif %}
+
+            {{ field.errors }}
+          </div>
+        {% endfor %}
+      </div>
+      <!-- Botão para avançar para a próxima seção -->
+      <button type="button" class="botao-avancar" onclick="navigateSection('forward', 'section-dados-pessoais', 'section-outros')">Avançar</button>
+    </div>
+
+    <!-- Seção 2: Outros Dados -->
+    <div class="form-section" id="section-outros" style="display: none;">
+      
+
+        
+      
+      <!-- Botão para voltar para a seção anterior -->
+      <button type="button" class="botao-voltar" onclick="navigateSection('back', 'section-outros', 'section-dados-pessoais')">Voltar</button>
+     
+      <button type="button" class="botao-avancar" onclick="navigateSection('forward', 'section-dados-pessoais', 'section-outros')">Avançar</button>
+    </div>
+    
+
+  </form>
+</div>
+
+<script>
+  function navigateSection(direction, currentSectionId, targetSectionId) {
+    var currentSection = document.getElementById(currentSectionId);
+    var targetSection = document.getElementById(targetSectionId);
+    if (direction === 'forward') {
+      currentSection.style.display = 'none';
+      targetSection.style.display = 'block';
+    } else if (direction === 'back') {
+      currentSection.style.display = 'none';
+      targetSection.style.display = 'block';
+    }
+  }
+</script>
+
+{% endblock content %}

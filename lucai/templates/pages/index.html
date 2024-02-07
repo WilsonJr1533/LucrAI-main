@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/99714e9ee8.js" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'lucai/css/style.css' %}" class="css">
+    <title>{% block title %} Dashboard{% endblock title %} </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'lucai/img/logo.png' %}"/>
+</head>
+
+<body class="dashboard-page" onload="obterGrafico()">
+    <div class="sidebar">
+        <div clas="logo-container">
+            <img src="{% static 'lucai/img/logo.png'%}" alt="logo imagem" class="dashboard-image"/>
+        </div>
+        <div class="icons-container">
+            <i class="fa-regular fa-bell fa-2xl icon"></i>
+            <i class="fa-solid fa-gear fa-2xl icon"></i>
+            <!-- Exemplo usando um ícone de FontAwesome -->
+            <a href="{% url 'logout' %}" title="Logout">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> 
+            </a>
+
+        </div>
+    </div>
+   
+   
+    <div class="welcome-container">
+         <div class="welcome-message">
+            <h2>Olá, {{ first_name }} !</h2>
+            <h3>Bem-vindo à revolução das finanças.</h3>
+            <p>Transformando sonhos em realidade, um <br> orçamento de cada vez.</p>
+        </div>
+    </div>
+
+    <div class="search-container">
+            <form action="" class="search-form">
+                <input type="search" class="search-input" name="search" placeholder="Digite para pesquisar...">
+                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+            </form>
+    </div>
+  
+   
+
+
+</body>
+
+
+
